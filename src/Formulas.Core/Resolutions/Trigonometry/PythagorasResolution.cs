@@ -7,107 +7,118 @@ using System.Collections.Generic;
 
 namespace Formulas.Core.Steps.Trigonometry
 {
-    public class PythagorasResolution: Resolution
+    public class PythagorasResolution
     {
-        private readonly PythagorasCalculation _calculation;
+        private readonly string BaseFormula;
+        private readonly PythagorasCalculation _calculation;        
 
         public PythagorasResolution(PythagorasCalculation calculation)
         {
-            BaseFormulaString = "a² = b² + c²";
+            BaseFormula = "a² = b² + c²";
             _calculation = calculation;
-
-            Steps = new List<string>();
         }
 
-        public override void Generate()
+        public List<Resolution> Generate()
         {
-            Steps.Add(BaseFormulaString);
+            List<string> steps = new List<string>
+            {
+                BaseFormula
+            };
 
             if (_calculation.Incognite == "A")
             {                
                 string step1 = $"a² = ({_calculation.Formula.Variables.B})² + ({_calculation.Formula.Variables.C})²";
-                Steps.Add(step1);
+                steps.Add(step1);
 
                 double bSquared = _calculation.BSquared();
                 double cSquared = _calculation.CSquared();
 
                 string step2 = $"a² = {bSquared} + {cSquared}";
-                Steps.Add(step2);
+                steps.Add(step2);
 
                 double sum = bSquared + cSquared;
 
                 string step3 = $"a² = {sum}";
-                Steps.Add(step3);
+                steps.Add(step3);
 
                 string step4 = $"a = √{sum}";
-                Steps.Add(step4);
+                steps.Add(step4);
 
                 double calculatedRoot = Math.Round(Math.Sqrt(sum), 2);
 
                 if (!calculatedRoot.IsInteger() && sum.IsInteger())
                 {
                     NumberRoot simplifiedRoot = Convert.ToInt32(sum).SimplifiedRoot();
-                    Steps.Add($"a = {simplifiedRoot.DisplayValue}");
+                    steps.Add($"a = {simplifiedRoot.DisplayValue}");
                 }
                 else
                 {
-                    Steps.Add($"a = {calculatedRoot}");
+                    steps.Add($"a = {calculatedRoot}");
                 }
             }
             else if (_calculation.Incognite == "B")
             {
-                Steps.Add($"{_calculation.Formula.Variables.A}² = b² + {_calculation.Formula.Variables.C}²");
+                steps.Add($"{_calculation.Formula.Variables.A}² = b² + {_calculation.Formula.Variables.C}²");
 
                 double aSquared = _calculation.ASquared();
                 double cSquared = _calculation.CSquared();
 
-                Steps.Add($"{aSquared} = b² + {cSquared}");                
+                steps.Add($"{aSquared} = b² + {cSquared}");
 
-                Steps.Add($"b² = {aSquared} - {cSquared}");
+                steps.Add($"b² = {aSquared} - {cSquared}");
 
                 double subtraction = aSquared - cSquared;
 
-                Steps.Add($"b² = {subtraction}");
+                steps.Add($"b² = {subtraction}");
 
-                Steps.Add($"b = √{subtraction}");
+                steps.Add($"b = √{subtraction}");
 
                 if (subtraction.IsInteger())
                 {
                     NumberRoot simplifiedRoot = Convert.ToInt32(subtraction).SimplifiedRoot();
-                    Steps.Add($"b = {simplifiedRoot.DisplayValue}");
+                    steps.Add($"b = {simplifiedRoot.DisplayValue}");
                 }
                 else
                 {
-                    Steps.Add( $"b = {Math.Round(Math.Sqrt(subtraction), 2)}" );
+                    steps.Add( $"b = {Math.Round(Math.Sqrt(subtraction), 2)}" );
                 }
             }
             else
             {
-                Steps.Add($"{_calculation.Formula.Variables.A}² = {_calculation.Formula.Variables.B} + c²");
+                steps.Add($"{_calculation.Formula.Variables.A}² = {_calculation.Formula.Variables.B} + c²");
 
                 double aSquared = _calculation.ASquared();
                 double bSquared = _calculation.BSquared();
 
-                Steps.Add($"{aSquared} = {bSquared} + c²");
+                steps.Add($"{aSquared} = {bSquared} + c²");
 
-                Steps.Add($"c² = {aSquared} - {bSquared}");
+                steps.Add($"c² = {aSquared} - {bSquared}");
 
                 double subtraction = aSquared - bSquared;
 
-                Steps.Add($"c² = {subtraction}");
+                steps.Add($"c² = {subtraction}");
 
-                Steps.Add($"c = √{subtraction}");
+                steps.Add($"c = √{subtraction}");
 
                 if (subtraction.IsInteger())
                 {
                     NumberRoot simplifiedRoot = Convert.ToInt32(subtraction).SimplifiedRoot();
-                    Steps.Add($"c = {simplifiedRoot.DisplayValue}");
+                    steps.Add($"c = {simplifiedRoot.DisplayValue}");
                 }
                 else
                 {
-                    Steps.Add($"c = {Math.Round(Math.Sqrt(subtraction), 2)}");
-                }
+                    steps.Add($"c = {Math.Round(Math.Sqrt(subtraction), 2)}");
+                }                
             }
+
+            var resolutions = new List<Resolution>();
+            resolutions.Add(new Resolution
+            {
+                Name = "Normal",
+                Steps = steps
+            });
+
+            return resolutions;
         }
     }
 }

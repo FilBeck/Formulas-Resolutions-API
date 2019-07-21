@@ -72,17 +72,17 @@ namespace Formulas.Core.Calcs.Trigonometry
 
         public double ASquared()
         {
-            return (double)(_a * _a);
+            return (_a * _a);
         }
 
         public double BSquared()
         {
-            return (double)(_b * _b);
+            return (_b * _b);
         }
 
         public double CSquared()
         {
-            return (double)(_c * _c);
+            return (_c * _c);
         }
 
         public override void HandleIncognites(PythagorasVariables variables)
@@ -93,6 +93,5 @@ namespace Formulas.Core.Calcs.Trigonometry
 
             Incognite = variables.FindIncognite();
         }
-       
     }
 }

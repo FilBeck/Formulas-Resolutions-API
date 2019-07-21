@@ -1,4 +1,6 @@
-﻿using Formulas.Core.Entities.Formulas.Trigonometry;
+﻿using Formulas.Core.Entities.Formulas.Algebra;
+using Formulas.Core.Entities.Formulas.Trigonometry;
+using Formulas.Core.Variables.Algebra;
 using Formulas.Core.Variables.Trigonometry;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +10,10 @@ namespace Formulas.API.Controllers
     [ApiController]
     public class AlgebraController : ControllerBase
     {        
-        [HttpGet("pythagoras")]
-        public IActionResult Pythagoras(PythagorasVariables variables)
+        [HttpGet("bhaskara")]
+        public IActionResult Bhaskara(BhaskaraVariables variables)
         {
-            var formula = new Pythagoras(variables);
+            var formula = new Bhaskara(variables);
             return Ok(formula.Execute());
         }
     }
