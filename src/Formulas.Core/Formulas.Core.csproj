@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -11,21 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="obj\Debug\netcoreapp2.1\Formulas.Core.AssemblyInfo.cs" />
-    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="bin\Debug\netcoreapp2.1\Formulas.Core.deps.json" />
     <Content Include="obj\Debug\netcoreapp2.1\Formulas.Core.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Formulas.Core.csproj.nuget.dgspec.json" />
     <Content Include="obj\project.assets.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\netcoreapp2.1\Formulas.Core.dll" />
-    <None Include="bin\Debug\netcoreapp2.1\Formulas.Core.pdb" />
     <None Include="obj\Debug\netcoreapp2.1\Formulas.Core.AssemblyInfoInputs.cache" />
     <None Include="obj\Debug\netcoreapp2.1\Formulas.Core.assets.cache" />
     <None Include="obj\Debug\netcoreapp2.1\Formulas.Core.csproj.CoreCompileInputs.cache" />
