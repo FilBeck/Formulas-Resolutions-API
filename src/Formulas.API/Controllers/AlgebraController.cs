@@ -13,7 +13,14 @@ namespace Formulas.API.Controllers
         [HttpGet("bhaskara")]
         public IActionResult Bhaskara(BhaskaraVariables variables)
         {
-            var formula = new Bhaskara(variables);
+            Bhaskara formula = new Bhaskara(variables);
+            return Ok(formula.Execute());
+        }
+
+        [HttpGet("quadratic-equation")]
+        public IActionResult QuadraticEquation(BhaskaraVariables variables)
+        {
+            Bhaskara formula = new Bhaskara(variables);
             return Ok(formula.Execute());
         }
     }

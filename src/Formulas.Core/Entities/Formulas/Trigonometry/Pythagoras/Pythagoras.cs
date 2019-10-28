@@ -10,11 +10,10 @@ namespace Formulas.Core.Entities.Formulas.Trigonometry
     public class Pythagoras : Formula
     {                
         public PythagorasVariables Variables { get; set; }
-        public PythagorasResolution Steps { get; set; }
 
         public Pythagoras(PythagorasVariables variables)
         {
-            Variables = variables;            
+            Variables = variables;
             Validation = new FormulaValidation(this, Variables);
         }
 

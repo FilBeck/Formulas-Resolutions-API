@@ -1,5 +1,6 @@
 ﻿using Formulas.Core.Entities;
 using Formulas.Core.Entities.Formulas.Algebra;
+using Formulas.Core.Exceptions;
 using Formulas.Core.Variables.Algebra;
 
 namespace Formulas.Core.Calcs.Algebra
@@ -28,7 +29,20 @@ namespace Formulas.Core.Calcs.Algebra
 
         public override void HandleIncognites(BhaskaraVariables variables)
         {
-            throw new System.NotImplementedException();
+            if (variables.A == null &&
+                variables.B == null &&
+                variables.C == null)
+                throw new InvalidInputException();
         }
+
+        /// <summary>
+        /// b² - 4ac
+        /// </summary>
+        /// <returns></returns>
+        public double GetDeltaValue()
+        {            
+            double delta = (Formula.Variables.B * Formula.Variables.B) - 4 * Formula.Variables.A * Formula.Variables.C;
+            return delta;
+        }       
     }
 }
